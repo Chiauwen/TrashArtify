@@ -150,6 +150,8 @@ while True:
                 )
 
     cv2.imshow("Webcam", frame)
+    
+    print("Hello")
 
     if cv2.waitKey(1) == ord("q"):
         break
