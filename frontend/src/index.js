@@ -5,13 +5,18 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.js'
 import './index.css'
 import {  
-
+  LandingPage,
+  DetectItem,
 } from './pages'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: < temp/>,
+    element: <App />,
+  },
+  {
+    path: '/DetectItem',
+    element: < DetectItem/>,
   },
 
   {

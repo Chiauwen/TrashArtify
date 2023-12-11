@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
+import { LandingPage } from './pages'
 
-function App() {
+const App = () => {
+
   return (
     <div className="App">
-    
+      <LandingPage/>
+
     </div>
-  );
+  )
 }
+
 
 export default App;
