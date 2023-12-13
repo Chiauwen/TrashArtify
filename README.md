@@ -31,7 +31,7 @@ After created, activate the virtual environment
 
 After activate your virtual environment, run the command below to install the required packages inside the virtual environment
 ```bash
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 
@@ -40,11 +40,11 @@ After activate your virtual environment, run the command below to install the re
 Renew requirements by running
 
 ```bash
-  pip freeze > requirements.txt
+pip freeze > requirements.txt
 ```
 
 Install requirements by running
 
 ```bash
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
