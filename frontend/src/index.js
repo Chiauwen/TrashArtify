@@ -7,6 +7,8 @@ import './index.css'
 import {  
   LandingPage,
   DetectItem,
+  GreenTrade,
+  MarketPlace,
   Test1,
 } from './pages'
 
@@ -26,13 +28,13 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/',
-    element: < temp/>,
+    path: '/GreenTrade',
+    element: < GreenTrade/>,
   },
 
   {
-    path: '/',
-    element: < temp/>,
+    path: '/MarketPlace',
+    element: < MarketPlace/>,
   },
 
   {

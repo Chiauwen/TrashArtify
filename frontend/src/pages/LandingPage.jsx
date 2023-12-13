@@ -10,6 +10,14 @@ const LandingPage = () => {
       <Link to="/DetectItem">
         <button>Object Detection</button>
       </Link>
+      <br/>
+      <Link to="/GreenTrade">
+        <button>Green Trade</button>
+      </Link>
+      <br/>
+      <Link to="/MarketPlace">
+        <button>Market Place</button>
+      </Link>
     </div>
   )
 }

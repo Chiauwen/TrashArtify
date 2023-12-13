@@ -74,7 +74,7 @@ def classify_trash(class_ids):
 
 
 def image(data):
-    results = model(data, show=True, conf=0.7)
+    results = model(data, show=True, conf=0.7, save=True, project='user_upload')
 
     class_ids = []
 
