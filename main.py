@@ -12,7 +12,7 @@ classNames = ["BIODEGRADABLE", "CARDBOARD", "GLASS", "METAL", "PAPER", "PLASTIC"
 cap = cv2.VideoCapture(0)
 
 
-def main(data):
+def main(data, frame):
 
     if data == "image":
         print("Image received")
@@ -90,37 +90,37 @@ def image(data):
     
     return trash_info
 
-# def webcam(data):
-#     while True:
-#         ret, frame = cap.read()
+def webcam(data):
+    while True:
+        ret, frame = cap.read()
 
-#         results = model(frame)[0]
+        results = model(frame)[0]
 
-#         for result in results.boxes.data.tolist():
-#             x1, y1, x2, y2, score, class_id = result
+        for result in results.boxes.data.tolist():
+            x1, y1, x2, y2, score, class_id = result
 
-#             threshold = 0.8
+            threshold = 0.8
 
-#             if score > threshold:
-#                 cv2.rectangle(
-#                     frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4
-#                 )
-#                 cv2.putText(
-#                     frame,
-#                     results.names[int(class_id)],
-#                     (int(x1), int(y1 - 10)),
-#                     cv2.FONT_HERSHEY_SIMPLEX,
-#                     1.3,
-#                     (0, 255, 0),
-#                     3,
-#                     cv2.LINE_AA,
-#                 )
+            if score > threshold:
+                cv2.rectangle(
+                    frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4
+                )
+                cv2.putText(
+                    frame,
+                    results.names[int(class_id)],
+                    (int(x1), int(y1 - 10)),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    1.3,
+                    (0, 255, 0),
+                    3,
+                    cv2.LINE_AA,
+                )
 
-#             classify_trash(class_id, frame)
-#         cv2.imshow("Webcam", frame)
+            classify_trash(class_id, frame)
+        cv2.imshow("Webcam", frame)
 
-#         if cv2.waitKey(1) == ord("q"):
-#             break
+        if cv2.waitKey(1) == ord("q"):
+            break
 
-#     cap.release()
-#     cv2.destroyAllWindows()
+    cap.release()
+    cv2.destroyAllWindows()
