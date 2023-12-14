@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import './App.css'
-import { LandingPage } from './pages'
+import { Home } from './pages'
 
 const App = () => {
 
   return (
     <div className="App">
-      <LandingPage/>
+      <Home/>
 
     </div>
   )

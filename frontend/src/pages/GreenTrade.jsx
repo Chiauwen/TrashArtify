@@ -10,9 +10,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './GreenTrade.css'
 
+
 const GreenTrade = () => {
   return (
     <div className="greentrade">
+
+      {/* <Header/> */}
       <Container>
         <h2>Green Trade</h2>
         <p>Trade in Recyclable Goods and Earn!</p>
