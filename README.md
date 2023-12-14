@@ -1,42 +1,50 @@
-
 # TrashArtify
 
 TrashArtify is all about empowering eco-creativity. Scan recyclables, generate AI craft ideas, and create sustainable handicraft. Join our eco-friendly community, turning waste into creative inspiration and transforming trash into treasure.
 
 
-## Authors
+## Run Locally
 
-- [@TSJean45](https://github.com/TSJean45)
-- [@Chiauwen](https://github.com/Chiauwen)
-
-
-## Features
-
-- Multiple Object Detection
-- Trash Classification
-- Upcycling Suggestion
-- Handcraft AI Generator
-- Handcraft Marketplace
-- Weekly Challenges
-
-
-## File Details
-
-The object detection model consists of the model after training [Garbage Classification Dataset](https://universe.roboflow.com/material-identification/garbage-classification-3) with YOLOv8 on a 200 epoch.
+Clone the project
 
 ```bash
-   object detection model training.ipynb
+  git clone git@github.com:TSJean45/TrashArtify.git
 ```
 
-The Python applications consists of the object detection feature utilising computer/laptop's webcamera.
+Go to the project directory
 
 ```bash
-   main.py
+  cd TrashArtify
 ```
 
-The Stable Diffusion model is a pretrained model from Hugging Face. It takes in prompts and generate images based on the prompt.
+Create virtual environment
 
 ```bash
-   trash to handicraft.ipynb
+  py -m venv myenv
 ```
-    
+
+After created, activate the virtual environment
+
+```bash
+  myenv\Scripts\activate
+```
+
+After activate your virtual environment, run the command below to install the required packages inside the virtual environment
+```bash
+pip install -r requirements.txt
+```
+
+
+## System Requirements
+
+Renew requirements by running
+
+```bash
+pip freeze > requirements.txt
+```
+
+Install requirements by running
+
+```bash
+pip install -r requirements.txt
+```
