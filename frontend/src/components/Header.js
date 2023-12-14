@@ -1,14 +1,15 @@
 import React from 'react'
-
 import PropTypes from 'prop-types'
-
 import './header.css'
+import logoimg from '../assets/logo.png'
 
 const Header = (props) => {
   return (
     <div className="header-header">
       <header data-thq="thq-navbar" className="header-navbar-interactive">
-        <span className="header-logo">{props.Logo}</span>
+        <span className="header-logo">
+          <img src={logoimg} alt="Logo" />
+        </span>
         <div data-thq="thq-navbar-nav" className="header-desktop-menu">
           <nav className="header-links">
             <span className="header-nav1">{props.Nav1}</span>
@@ -69,7 +70,7 @@ const Header = (props) => {
 }
 
 Header.defaultProps = {
-  Logo: 'TRASH ARTIFY',
+  Logo: logoimg,
   Nav1: 'Home',
   Nav2: 'About',
   Nav3: 'Features',
