@@ -82,7 +82,7 @@ const GreenTrade = () => {
       <div className='vending-machine'>
         <h4>Trade In with GreenTrade Vending Machine</h4>
         <h5>Find our Machine in Location below</h5>
-        <p>Only PET Bottle and Aluminium Can applicable</p>
+        <p>Only PET Bottle, Aluminium Can and Biodegradeble waste are Applicable</p>
         {/* Vending machine simulator */}
       </div>
     </div>
