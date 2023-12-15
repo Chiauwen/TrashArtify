@@ -10,7 +10,7 @@ import Container from 'react-bootstrap/Container'
 // import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col'
 import './DetectItem.css'
-const apiKey = "INPUT_API_KEY_MANUALLY"
+const apiKey = "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"
 
 const DetectItem = () => {
   const [generatedImage, set_generatedImage] = useState(null)
@@ -26,7 +26,7 @@ const DetectItem = () => {
   
     try {
       const response = await fetch(
-        "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
+        "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
         {
           method: "POST",
           headers: {
@@ -34,7 +34,7 @@ const DetectItem = () => {
             Authorization: `Bearer ${apiKey}`
           },
           body: JSON.stringify({
-            inputs: `A beautiful craftable handicraft projects using only the trash type ${trashType} suitable for beginners.`,
+            inputs: `A beautiful, creative, unique but craftable handicraft projects using ${trashType}.`,
           }),
         }
       );
