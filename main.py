@@ -13,6 +13,8 @@ cap = cv2.VideoCapture(0)
 
 
 def main(data, frame):
+    
+    trashes_info_list = []
 
     if data == "image":
         print("Image received")

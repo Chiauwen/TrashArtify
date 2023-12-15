@@ -1,29 +1,39 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useRef, useState, useEffect } from 'react';
+import Webcam from 'react-webcam';
 
 const Test1 = () => {
-  const sendDataToFlask = async () => {
-    try {
-      const response = await axios.post(
-        'http://localhost:5000/receive_data',
-        {
-          message: 'hello',
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error sending data to Flask:', error);
-    }
+  const webcamRef = useRef(null);
+  const [capturedFrame, setCapturedFrame] = useState(null);
+
+  const captureFrame = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setCapturedFrame(imageSrc);
+
+    // Send the captured frame to Flask
+    fetch('http://localhost:5000/process-frame', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ frame: imageSrc }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Data received from Flask (processed frame)
+        console.log('Data from Flask:', data);
+      })
+      .catch((error) => {
+        console.error('Error sending frame to Flask:', error);
+      });
   };
 
   return (
     <div>
-      <button onClick={sendDataToFlask}>Send Data to Flask</button>
+      <Webcam ref={webcamRef} />
+      <button onClick={captureFrame}>Capture Frame</button>
+
+      {/* Display the captured frame */}
+      {capturedFrame && <img src={capturedFrame} alt="Captured Frame" />}
     </div>
   );
 };
