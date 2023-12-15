@@ -10,7 +10,7 @@ import Container from 'react-bootstrap/Container'
 // import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col'
 import './DetectItem.css'
-const apiKey = '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'
+const apiKey = "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"
 
 const DetectItem = () => {
   const [generatedImage, set_generatedImage] = useState(null)
@@ -21,17 +21,17 @@ const DetectItem = () => {
   const [loading, setLoading] = useState(false);
 
   const imageGenerator = async (trashType) => {
-    if (trashType === '') {
-      return 0
+    if (trashType === "") {
+      return 0;
     }
 
     setLoading(true);
 
     try {
       const response = await fetch(
-        'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0',
+        "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
         {
-          method: 'POST',
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
@@ -43,7 +43,7 @@ const DetectItem = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const blob = await response.blob();
@@ -59,10 +59,10 @@ const DetectItem = () => {
 
   useEffect(() => {
     if (detectionResult && detectionResult.length > 0) {
-      const trashType = detectionResult[0].trash_type
-      imageGenerator(trashType)
+      const trashType = detectionResult[0].trash_type;
+      imageGenerator(trashType);
     }
-  }, [detectionResult])
+  }, [detectionResult]);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0]
@@ -85,9 +85,20 @@ const DetectItem = () => {
   }
 
   const handleCameraToggle = async () => {
-    setShowCamera((prevShowCamera) => !prevShowCamera)
-  }
-
+    setShowCamera(!showCamera);
+    setImage(null);
+  
+    const formData = new FormData();
+    formData.append('choice', 'frame');
+  
+    if (showCamera) {
+      const screenshot = webcamRef.current.getScreenshot();
+      formData.append('frame', screenshot);
+    }
+  
+    selection(formData);
+  };
+  
   const selection = async (formData) => {
     try {
       const response = await axios.post(
@@ -108,13 +119,11 @@ const DetectItem = () => {
   return (
     <div className="detection">
       <Header />
-
+      <h1 className="hero-heading">
+        Trash Classifier and AI Craft Ideas Generator
+      </h1>
       <Container className="main-container">
         <div className="left-section">
-          <h4>Just Scan</h4>
-          <h5>to</h5>
-          <h2>Classify Trash</h2>
-
           <div className="input">
             <input type="file" accept="image/*" onChange={handleImageUpload} />
             <p>or</p>
