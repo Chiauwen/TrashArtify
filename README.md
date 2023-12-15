@@ -40,7 +40,7 @@ Run the python server
 py server.py runserver
 ```
 
-Open a new terminal and activate the virtual environment again.Then, head over to the frontend folder
+Open a new terminal and head over to the frontend folder
 ```bash
 cd frontend
 ```
