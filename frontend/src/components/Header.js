@@ -8,7 +8,7 @@ const Header = (props) => {
     <div className="header-header">
       <header data-thq="thq-navbar" className="header-navbar-interactive">
         <span className="header-logo">
-          <img src={logoimg} alt="Logo" />
+          <img src={logoimg} alt="Logo" width="250" height="150"/>
         </span>
         <div data-thq="thq-navbar-nav" className="header-desktop-menu">
           <nav className="header-links">

@@ -1,0 +1,23 @@
+.marketplace {
+  margin: 3rem;
+
+  h2 {
+    font-size: 50px;
+    font-weight: bolder;
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    padding: 3rem;
+  }
+}
+
+.g-4 {
+  Button {
+    background-color: #47b685;
+    font-size: 15px;
+    font-weight: 700;
+  }
+}
