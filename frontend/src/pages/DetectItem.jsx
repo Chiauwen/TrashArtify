@@ -17,13 +17,15 @@ const DetectItem = () => {
   const [image, setImage] = useState(null)
   const [showCamera, setShowCamera] = useState(false)
   const [detectionResult, setDetectionResult] = useState(null)
-  const webcamRef = useRef(null)
-  const [cameraImage, setCameraImage] = useState(null)
+  const webcamRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const imageGenerator = async (trashType) => {
     if (trashType === '') {
       return 0
     }
+
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -31,27 +33,29 @@ const DetectItem = () => {
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
           },
           body: JSON.stringify({
             inputs: `A beautiful, creative, unique but craftable handicraft projects using ${trashType}.`,
           }),
         }
-      )
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
       }
 
-      const blob = await response.blob()
-      const imageUrl = URL.createObjectURL(blob)
+      const blob = await response.blob();
+      const imageUrl = URL.createObjectURL(blob);
 
-      set_generatedImage(imageUrl)
+      set_generatedImage(imageUrl);
     } catch (error) {
-      console.error('Error generating image:', error)
+      console.error("Error generating image:", error);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (detectionResult && detectionResult.length > 0) {
@@ -105,62 +109,51 @@ const DetectItem = () => {
     <div className="detection">
       <Header />
 
-      <Container>
-        <h4>Just Scan</h4>
-        <h5>to</h5>
-        <h2>Classify Trash</h2>
+      <Container className="main-container">
+        <div className="left-section">
+          <h4>Just Scan</h4>
+          <h5>to</h5>
+          <h2>Classify Trash</h2>
 
-        <div className="input">
-          <input type="file" accept="image/*" onChange={handleImageUpload} />
-          <p>or</p>
-
-          <button onClick={handleCameraToggle}>
-            {showCamera ? 'Turn off Camera' : 'Turn on Camera'}
-          </button>
-
-          {showCamera && (
-          <Webcam
-            audio={false}
-            videoConstraints={{
-              facingMode: 'user',
-            }}
-            screenshotFormat="image/jpeg"
-            width={640}
-            height={480}
-            className="webcam"
-            mirrored={true}
-            screenshotQuality={1}
-            ref={webcamRef}
-            src={`http://localhost:5000/video_feed`} // Update the URL based on your Flask server setup
-          />
-        )}
-
-          {detectionResult && (
-            <div>
-              <h2>Detection Result</h2>
-              {detectionResult.map((result, index) => (
-                <div key={index}>
-                  <p>
-                    Class ID: {result.class_id}, Recyclable Type:{' '}
-                    {result.recyclable_type}, Trash Type: {result.trash_type}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="input">
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <p>or</p>
+            <button onClick={handleCameraToggle}>
+              {showCamera ? 'Turn off Camera' : 'Turn on Camera'}
+            </button>
+            {showCamera && <Webcam ref={webcamRef} />}
+            {image && (
+              <div>
+                <h2>Uploaded Image Preview</h2>
+                <img src={image} alt="Uploaded" style={{ maxWidth: '100%' }} />
+              </div>
+            )}
+            {detectionResult && (
+              <div>
+                <h2>Detection Result</h2>
+                {detectionResult.map((result, index) => (
+                  <div key={index}>
+                    <p>
+                      Class ID: {result.class_id}, Recyclable Type:{' '}
+                      {result.recyclable_type}, Trash Type: {result.trash_type}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </Container>
-      <Container>
-        <div>
-          {generatedImage && (
-            <div>
-              <h2>Generated Ideas</h2>
-              <img
-                src={generatedImage}
-                alt="Craft Ideas"
-                style={{ maxWidth: '100%' }}
-              />
-            </div>
+
+        <div className="right-section">
+          {loading ? (
+            <p>Generating Ideas...</p>
+          ) : (
+            generatedImage && (
+              <div>
+                <h2>Generated Ideas</h2>
+                <img src={generatedImage} alt="Craft Ideas" style={{ maxWidth: '100%' }} />
+              </div>
+            )
           )}
         </div>
       </Container>

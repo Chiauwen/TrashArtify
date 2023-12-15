@@ -1,18 +1,20 @@
-h4 {
-  font-size: 40px;
-  font-weight: bold;
+.main-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20rem; /* This ensures the container takes up the full height of the viewport */
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+}
+
+.left-section {
   text-align: center;
 }
 
-h5{
-font-size: 25px;
-  font-weight: bold;
-  text-align: center;
-}
-
-h2 {
-  font-size: 45px;
-  font-weight: bolder;
+.right-section {
   text-align: center;
 }
 
@@ -21,10 +23,14 @@ h2 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20rem; /* This ensures the container takes up the full height of the viewport */
 }
 
 /* Add additional styling as needed */
 .input input {
   margin-bottom: 10px; /* Add margin to create space between elements */
+}
+
+h4, h5, h2 {
+  margin: 0;
+  padding: 0;
 }
