@@ -2,14 +2,15 @@ import React, { useState, useEffect, useRef } from 'react'
 import Webcam from 'react-webcam'
 import axios from 'axios'
 import { Header } from '../components'
-import { Link } from 'react-router-dom'
-import Form from 'react-bootstrap/Form'
-import Dropdown from 'react-bootstrap/Dropdown'
-import Button from 'react-bootstrap/Button'
+// import { Link } from 'react-router-dom'
+// import Form from 'react-bootstrap/Form'
+// import Dropdown from 'react-bootstrap/Dropdown'
+// import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+// import Row from 'react-bootstrap/Row'
+// import Col from 'react-bootstrap/Col'
 import './DetectItem.css'
+const apiKey = "INPUT_API_KEY_MANUALLY"
 
 const DetectItem = () => {
   const [generatedImage, set_generatedImage] = useState(null)
@@ -22,32 +23,34 @@ const DetectItem = () => {
     if (trashType === "") {
       return 0;
     }
-
+  
     try {
       const response = await fetch(
-        "https://api.openai.com/v1/images/generations",
+        "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer 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`,
+            Authorization: `Bearer ${apiKey}`
           },
           body: JSON.stringify({
-            prompt: `Beautiful, exciting, and craftable handicraft projects using the trash type ${trashType}.`,
-            size: "1024x1024",
-            n: 1,
+            inputs: `A beautiful craftable handicraft projects using only the trash type ${trashType} suitable for beginners.`,
           }),
         }
       );
-
-      const data = await response.json();
-      console.log(data);
-
-      set_generatedImage(data.generatedImage);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const blob = await response.blob();
+      const imageUrl = URL.createObjectURL(blob);
+  
+      set_generatedImage(imageUrl);
     } catch (error) {
       console.error('Error generating image:', error);
     }
-  };
+  };  
 
   useEffect(() => {
     if (detectionResult && detectionResult.length > 0) {
@@ -102,8 +105,6 @@ const DetectItem = () => {
           },
         }
       )
-
-      // Update state with the detection result
       setDetectionResult(response.data)
     } catch (error) {
       console.error('Error sending data to Flask:', error)
@@ -146,14 +147,17 @@ const DetectItem = () => {
               ))}
             </div>
           )}
-    
+    </div>
+      </Container>
+      <Container>
+        <div>
       {generatedImage && (
         <div>
           <h2>Generated Ideas</h2>
           <img src={generatedImage} alt="Craft Ideas" style={{ maxWidth: '100%' }} />
         </div>
       )}
-    </div>
+        </div>
       </Container>
     </div>
   )
