@@ -1,23 +1,26 @@
 import cv2
-import numpy as np
-
 from flask import Flask, Response, jsonify, request
 from flask_cors import CORS
-import base64
 from webcam import webcam
 from photo import photo
 
 app = Flask(__name__)
 CORS(app)
 
+trash_info = None  # Global variable
+
 def generate_frames():
-    frame_generator = photo()
+    global trash_info  # Explicitly declare as global
+
+    frame_generator = webcam()
 
     while True:
         try:
-            frame, trash_info = next(frame_generator)
+            frame, local_trash_info = next(frame_generator)
 
             ret_frame, jpeg_frame = cv2.imencode(".jpg", frame)
+
+            trash_info = local_trash_info  # Update the global variable
 
             yield (
                 b"--frame\r\n"
@@ -26,6 +29,11 @@ def generate_frames():
 
         except StopIteration:
             break
+
+@app.route("/webcam_info")
+def webcam_info():
+    global trash_info  # Explicitly declare as global
+    return jsonify(trash_info)
         
 @app.route("/video_feed")
 def video_feed():

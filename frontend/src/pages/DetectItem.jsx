@@ -1,93 +1,102 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Webcam from 'react-webcam';
-import axios from 'axios';
-import { Header } from '../components';
-import Container from 'react-bootstrap/Container';
-import './DetectItem.css';
-const apiKey = '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';
+import React, { useState, useEffect, useRef } from 'react'
+import Webcam from 'react-webcam'
+import axios from 'axios'
+import { Header } from '../components'
+import Container from 'react-bootstrap/Container'
+import './DetectItem.css'
+const apiKey = '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'
 
 const DetectItem = () => {
-  const [generatedImage, set_generatedImage] = useState(null);
-  const [image, setImage] = useState(null);
-  const [showCamera, setShowCamera] = useState(false);
-  const [detectionResult, setDetectionResult] = useState(null);
-  const webcamRef = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const [generatedImage, set_generatedImage] = useState(null)
+  const [image, setImage] = useState(null)
+  const [showCamera, setShowCamera] = useState(false)
+  const [detectionResult, setDetectionResult] = useState(null)
+  const webcamRef = useRef(null)
+  const [loading, setLoading] = useState(false)
 
   const imageGenerator = async (trashType) => {
     if (trashType === '') {
-      return 0;
+      return 0
     }
 
-    setLoading(true);
-  };
+    setLoading(true)
+  }
 
   useEffect(() => {
     if (detectionResult && detectionResult.length > 0) {
-      const trashType = detectionResult[0].trash_type;
-      imageGenerator(trashType);
+      const trashType = detectionResult[0].trash_type
+      imageGenerator(trashType)
     }
-  }, [detectionResult]);
+  }, [detectionResult])
 
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    const file = e.target.files[0]
+    const reader = new FileReader()
 
     reader.onloadend = () => {
-      setImage(reader.result);
-      setShowCamera(false);
+      setImage(reader.result)
+      setShowCamera(false)
 
-      const formData = new FormData();
-      formData.append('choice', 'image');
-      formData.append('file', file);
+      const formData = new FormData()
+      formData.append('choice', 'image')
+      formData.append('file', file)
 
-      selection(formData);
-    };
+      selection(formData)
+    }
 
     if (file) {
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   const handleCameraToggle = async () => {
-    setShowCamera(!showCamera);
-    setImage(null);
+    setShowCamera(!showCamera)
+    setImage(null)
 
-    const formData = new FormData();
-    formData.append('choice', 'frame');
+    const formData = new FormData()
+    formData.append('choice', 'frame')
 
     if (showCamera) {
-      const screenshot = webcamRef.current.getScreenshot();
-      formData.append('frame', screenshot);
+      const screenshot = webcamRef.current.getScreenshot()
+      formData.append('frame', screenshot)
     }
 
-    selection(formData);
-  };
+    selection(formData)
+  }
 
   const selection = async (formData) => {
     try {
-      const response = await axios.post('http://localhost:5000/detect_item', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      setDetectionResult(response.data);
+      const response = await axios.post(
+        'http://localhost:5000/detect_item',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
+      setDetectionResult(response.data)
     } catch (error) {
-      console.error('Error sending data to Flask:', error);
+      console.error('Error sending data to Flask:', error)
     }
-  };
+  }
 
   return (
     <div className="detection">
       <Header />
-      <h1 className="hero-heading">Trash Classifier and AI Craft Ideas Generator</h1>
+      <h1 className="hero-heading">
+        Trash Classifier and AI Craft Ideas Generator
+      </h1>
       <Container className="main-container">
         <div className="left-section">
           <div className="input">
             <input type="file" accept="image/*" onChange={handleImageUpload} />
             <p>or</p>
             <button onClick={handleCameraToggle}>
-              {showCamera ? 'Turn off Camera' : 'Turn on Camera'}
+              {showCamera ? 'Turn off Camera' : 'Turn On Camera'}
+              {showCamera && (
+                <img src="http://localhost:5000/video_feed" alt="Video" />
+              )}
             </button>
             {showCamera && <Webcam ref={webcamRef} />}
             {image && (
@@ -103,8 +112,7 @@ const DetectItem = () => {
                   <div key={index}>
                     <p>
                       Class ID: {result.class_id}, Recyclable Type:{' '}
-                      {result.recyclable_type}, Trash Type:{' '}
-                      {result.trash_type}
+                      {result.recyclable_type}, Trash Type: {result.trash_type}
                     </p>
                   </div>
                 ))}
@@ -131,7 +139,7 @@ const DetectItem = () => {
         </div>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default DetectItem;
+export default DetectItem

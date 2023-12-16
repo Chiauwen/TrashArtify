@@ -10,9 +10,10 @@ model = YOLO("trash.pt").to(device)
 classNames = ["BIODEGRADABLE", "CARDBOARD", "GLASS", "METAL", "PAPER", "PLASTIC"]
 
 cap = cv2.VideoCapture(0)
-        
-    
+
+
 def classify_trash(class_ids):
+    print(class_ids)
     trash_info = []
 
     for class_id in class_ids:
@@ -48,28 +49,63 @@ def classify_trash(class_ids):
 
     return trash_info
 
+
 def webcam():
     while True:
+        class_ids = []
         ret, frame = cap.read()
 
         results = model(frame)[0]
 
-        results = model.track(frame, persist=True, conf=0.6)
-        
-        annotated_frame = results[0].plot()
-        
-        # for *box, conf, cls in results.xyxy[0]:
-        #     class_label = model.names[int(cls)]
-        #     print('Detected:', class_label)
-        #     # Use class_label to control the stepper motor
+        for r in results:
+            for box in r.boxes:
+                conf = box.conf
 
-        # classify_trash(class_label)
-        cv2.imshow("Webcam", annotated_frame)
+                cls = int(box.cls[0])
+
+                currentClass = classNames[cls]
+
+                if (
+                    currentClass == "BIODEGRADABLE"
+                    or currentClass == "CARDBOARD"
+                    or currentClass == "GLASS"
+                    or currentClass == "METAL"
+                    or currentClass == "PAPER"
+                    or currentClass == "PLASTIC"
+                ) and conf > 0.3:
+                    x1, y1, x2, y2 = box.xyxy[0]
+                    cv2.rectangle(
+                        frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4
+                    )
+                    cv2.putText(
+                        frame,
+                        results.names[cls].upper(),
+                        (int(x1), int(y1 - 10)),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        1.3,
+                        (0, 255, 0),
+                        3,
+                        cv2.LINE_AA,
+                    )
+
+                    class_ids.append(cls)
+
+        trash_info = classify_trash(class_ids)
+
+        for info in trash_info:
+            class_id = info["class_id"]
+            print(
+                "Class ID: {class_id}, Recyclable Type: {info['recyclable_type']}, Trash Type: {info['trash_type']}"
+            )
+        # cv2.imshow("Webcam", frame)
+        
+        yield frame, trash_info
 
         if cv2.waitKey(1) == ord("q"):
             break
 
     cap.release()
     cv2.destroyAllWindows()
+
 
 webcam()

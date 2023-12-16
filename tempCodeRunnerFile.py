@@ -1,2 +1,2 @@
 
-CORS(app)  # Enable CORS for all routes
+device = "cuda" if torch.cuda.is_available() else "cpu"
