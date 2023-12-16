@@ -85,14 +85,14 @@ const DetectItem = () => {
     <div className="detection">
       <Header />
       <h1 className="hero-heading">
-        Trash Classifier and AI Craft Ideas Generator
+        Trash Classifier & AI Craft Ideas Generator
       </h1>
       <Container className="main-container">
         <div className="left-section">
-          <div className="input">
+          <div className="detect-item">
             <input type="file" accept="image/*" onChange={handleImageUpload} />
             <p>or</p>
-            <button onClick={handleCameraToggle}>
+            <button id="webcam" onClick={handleCameraToggle}>
               {showCamera ? 'Turn off Camera' : 'Turn On Camera'}
               {showCamera && (
                 <img src="http://localhost:5000/video_feed" alt="Video" />
@@ -100,19 +100,20 @@ const DetectItem = () => {
             </button>
             {showCamera && <Webcam ref={webcamRef} />}
             {image && (
-              <div>
+              <div className='photo'>
                 <h2>Uploaded Image Preview</h2>
                 <img src={image} alt="Uploaded" style={{ maxWidth: '100%' }} />
               </div>
             )}
+            
             {detectionResult && (
-              <div>
+              <div className='photo-result'>
                 <h2>Detection Result</h2>
                 {detectionResult.map((result, index) => (
                   <div key={index}>
                     <p>
-                      Class ID: {result.class_id}, Recyclable Type:{' '}
-                      {result.recyclable_type}, Trash Type: {result.trash_type}
+                      Recyclable Type: {result.recyclable_type}, <br/> Trash Type:{' '}
+                      {result.trash_type}
                     </p>
                   </div>
                 ))}
