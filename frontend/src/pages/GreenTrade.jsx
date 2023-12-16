@@ -1,6 +1,4 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
-// import Dropdown from 'react-bootstrap/Dropdown'
 import { Link } from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -51,50 +49,45 @@ const GreenTrade = () => {
         {/* Recycle Lorry will come to each area once a week to pick up */}
         <div className="area-selection">
           <h4>Door-to-Door Pickup</h4>
-          <p>with at least x items</p>
-          <Row>
-            <Col>
-              <Dropdown className="area">
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  State
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Melaka</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Selangor</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Seremban</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Col>
+          <p>with at least RM20 of total items</p>
 
-            <Col>
-              <Dropdown className="area">
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  Area
-                </Dropdown.Toggle>
+          <div className="dropdown">
+            <label>
+              State <br />
+              <select>
+                <option>Melaka</option>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">
-                    Bukit Baru (Every Thursday)
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Bukit Beruang (Every Monday)
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Ayer Keroh (Every Tuesday)
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Col>
-          </Row>
+                <option>Selangor</option>
+
+                <option>Johor Bahru</option>
+              </select>
+            </label>
+            <label>
+              Area
+              <br />
+              <select>
+                <option>Bukit Baru (pickup of every Thursday)</option>
+
+                <option>Bukit Beruang (pickup of every Tuesday)</option>
+
+                <option>Bukit Katil (pickup of every Wednesday)</option>
+              </select>
+            </label>
+          </div>
 
           {/* Trade in user info */}
           <Form className="user-input">
+            <h3>Pick Up User Information</h3>
             <Form.Group controlId="email">
               <Form.Control type="email" placeholder="E-mail" />
             </Form.Group>
 
             <Form.Group controlId="name">
               <Form.Control type="name" placeholder="Full Name" />
+            </Form.Group>
+
+            <Form.Group controlId="contact">
+              <Form.Control type="number" placeholder="Contact Number" />
             </Form.Group>
 
             <Link to="/">
@@ -111,20 +104,16 @@ const GreenTrade = () => {
             Only PET Bottle, Aluminium Can and Biodegradeble waste are
             Applicable
           </p>
-          <h5>Find our Machine at Location below</h5>
+          <h5>Find our Machine at Location below:</h5>
           {/* Vending machine simulator */}
-          <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer>
-          ,
+          <iframe id='map'
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1650.0191743468265!2d102.27610689574796!3d2.2502012794730684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1e56b9710cf4b%3A0x66b6b12b75469278!2sMultimedia%20University!5e0!3m2!1sen!2smy!4v1702746012724!5m2!1sen!2smy"
+            width="1000"
+            height="600"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </Container>
     </div>
