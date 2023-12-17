@@ -6,7 +6,25 @@
     font-weight: bolder;
   }
 }
+.hero-heading {
+  text-align: center;
+  font-weight: bolder;
+  color: #333; /* Dark text color */
+  margin-top: 2rem; /* Adjusted top margin for better spacing */
+  position: relative;
+}
 
+.hero-heading::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 3px;
+  background-color: #A6D165; /* Accent color */
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .marketplace p{
   font-size: 30px;
   text-align: center;

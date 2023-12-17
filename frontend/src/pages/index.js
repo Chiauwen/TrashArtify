@@ -5,3 +5,4 @@ export { default as MarketPlace } from './MarketPlace';
 export { default as Test1 } from './Test1';
 export { default as WeeklyChallengePage } from './WeeklyChallengePage';
 export { default as Login } from './Login';
+export { default as Register } from './Register';
