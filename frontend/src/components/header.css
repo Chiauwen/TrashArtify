@@ -47,42 +47,52 @@ body {
 .header-nav1 {
   transition: 0.3s;
   color: black;
+  border-radius: 20px;
 }
 .header-nav1:hover {
-  color: #3d6e70ff;
+  color: rgb(35,82,51);
+  text-decoration: none;
 }
 .header-nav2 {
   transition: 0.3s;
   margin-left: var(--dl-space-space-twounits);
   color: black;
+  border-radius: 20px;
 }
 .header-nav2:hover {
   color: #3d6e70ff;
+  text-decoration: none;
 }
 .header-nav3 {
   transition: 0.3s;
   margin-left: var(--dl-space-space-twounits);
   color: black;
+  border-radius: 20px;
 }
 .header-nav3:hover {
   color: #3d6e70ff;
+  text-decoration: none;
 }
 .header-nav4 {
   transition: 0.3s;
   margin-left: var(--dl-space-space-twounits);
+  border-radius: 20px;
   color: black;
 }
 .header-nav4:hover {
   color: #3d6e70ff;
+  text-decoration: none;
 }
 .header-nav5 {
   transition: 0.3s;
   color: black;
   color: black;
+  border-radius: 20px;
   margin-left: var(--dl-space-space-twounits);
 }
 .header-nav5:hover {
   color: #3d6e70ff;
+  text-decoration: none;
 }
 .header-links a {
   text-decoration: none;
@@ -110,11 +120,17 @@ body {
 }
 
 .header-register:hover,
-.header-login:hover {
-  border-color: rgba(41, 20, 119, 0.9);
+.header-login:hover,
+.header-nav1:hover,
+.header-nav2:hover,
+.header-nav3:hover,
+.header-nav4:hover,
+.header-nav5:hover {
+  border-color: rgb(35,82,51);
+  text-decoration: none;
   padding: 1rem 1.5rem; /* Adjust the padding on hover as needed */
-  background-color: rgba(41, 20, 119, 0.9);
-  color: white
+  background-color: rgb(35,82,51);
+  color: white;
 }
 
 .header-burger-menu {

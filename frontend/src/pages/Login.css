@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
   }
   
   .login-container {
@@ -34,7 +33,7 @@
   }
   
   button {
-    background-color: #007bff;
+    background-color: rgb(35,82,51);
     color: #fff;
     padding: 0.5rem;
     border: none;
@@ -44,7 +43,7 @@
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: rgb(35,82,51);
   }
   
   p {
@@ -53,7 +52,7 @@
   }
   
   a {
-    color: #007bff;
+    color: rgb(35,82,51);
     text-decoration: none;
   }
   

@@ -70,8 +70,8 @@
 }
 .home-hero-button1:hover {
   color: white;
-  border-color: rgba(41, 20, 119, 0.9);
-  background-color: rgba(41, 20, 119, 0.9);
+  border-color: rgb(35,82,51);
+  background-color: rgb(35,82,51);
 }
 .home-hero-button2 {
   color: var(--dl-color-primary1-blue100);
@@ -86,8 +86,8 @@
 }
 .home-hero-button2:hover {
   color: white;
-  border-color: rgba(41, 20, 119, 0.9);
-  background-color: rgba(41, 20, 119, 0.9);
+  border-color: rgb(35,82,51);
+  background-color: rgb(35,82,51);
 }
 
 .home-details {

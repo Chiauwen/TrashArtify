@@ -9,6 +9,8 @@ import {
   DetectItem,
   WeeklyChallengePage,
   GreenTrade,
+  Login,
+  Register,
   MarketPlace,
   Test1,
 } from './pages'
@@ -31,6 +33,14 @@ const router = createBrowserRouter([
   {
     path: '/WeeklyChallengePage',
     element: <WeeklyChallengePage />,
+  },
+  {
+    path: '/Login',
+    element: <Login />,
+  },
+  {
+    path: '/Register',
+    element: <Register />,
   },
   {
     path: '/GreenTrade',

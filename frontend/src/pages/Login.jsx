@@ -9,7 +9,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Handle login logic here
     console.log('Logging in...');
   };
 
@@ -36,13 +35,13 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </label>
-          <button type="button" onClick={handleLogin}>
-            Login
-          </button>
+          <Link to="/detectitem">
+            <button type="button" onClick={handleLogin}>Login</button>
+          </Link>
         </form>
 
         <p>
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          Don't have an account? <Link to="/register">Sign up</Link>
         </p>
       </div>
 

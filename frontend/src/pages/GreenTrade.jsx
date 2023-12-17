@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import './GreenTrade.css'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import { Header } from '../components'
+import { Header, Footer } from '../components'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>
 const position = [51.505, -0.09] // Initial map position
@@ -18,7 +18,9 @@ const GreenTrade = () => {
     <div className="greentrade">
       <Header />
       <Container>
-        <h2>Green Trade</h2>
+      <h1 className="hero-heading">
+        GreenTrade
+      </h1>
         <h4>Trade in Recyclable Goods and Earn!</h4>
 
         {/* Each goods' prices */}
@@ -99,7 +101,9 @@ const GreenTrade = () => {
         </div>
 
         <div className="vending-machine">
-          <h3>Trade In with GreenTrade Vending Machine</h3>
+        <h1 className="hero-heading">
+        Trade In with GreenTrade Vending Machine
+      </h1>
           <p>
             Only PET Bottle, Aluminium Can and Biodegradeble waste are
             Applicable

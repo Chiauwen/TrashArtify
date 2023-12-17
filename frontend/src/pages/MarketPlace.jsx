@@ -71,7 +71,9 @@ const MarketPlace = () => {
     <div className="marketplace">
       <Header />
       <Container>
-        <h2>Market Place</h2>
+      <h1 className="hero-heading">
+        Marketpalce
+      </h1>
         <p>from Trash to Treasure!</p>
 
         <Row xs={1} md={2} lg={4} className="g-4">

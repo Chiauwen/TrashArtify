@@ -25,6 +25,9 @@ const Header = (props) => {
           <span className="header-nav-item">
             <Link to="/weeklychallenge" className="header-nav4">{props.Nav4}</Link>
           </span>
+          <span className="header-nav-item">
+            <Link to="/login" className="header-nav4">{props.Nav5}</Link>
+          </span>
         </nav>
           <div className="header-buttons">
           <Link to="/login" className="header-login">{props.Login}</Link>
@@ -83,6 +86,7 @@ Header.defaultProps = {
   Nav2: 'GreenTrade',
   Nav3: 'Marketplace',
   Nav4: 'Weekly Challenges',
+  Nav5: 'Trash To Art',
   Login: 'Login',
   Register: 'Register',
   Logo1: 'TRASH ARTIFY',

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Webcam from 'react-webcam'
 import axios from 'axios'
-import { Header } from '../components'
+import { Header, Footer } from '../components'
 import Container from 'react-bootstrap/Container'
 import './DetectItem.css'
 
-const apiKey = 'lala'
+const apiKey = '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'
 
 
 function dataURLtoBlob(dataURL) {
@@ -35,7 +35,7 @@ const DetectItem = () => {
   }
 
   const imageGenerator = async (trashType) => {
-    if (trashType === '' || trashType === lastDetectedType) {
+    if (trashType === '' || trashType === lastDetectedType || setRefreshed === false) {
       return 0
     }
 
@@ -165,6 +165,14 @@ const DetectItem = () => {
       <h1 className="hero-heading">
         Trash Classifier & AI Craft Ideas Generator
       </h1>
+     <div className="header-container">
+     <div className="header-left">
+          <h2>Detect Trash</h2>
+        </div>
+        <div className="header-right">
+          <h2>Generate Handicraft Ideas</h2>
+        </div>
+     </div>
       <Container className="main-container">
         <div className="left-section">
           <div className="detect-item">
@@ -220,6 +228,7 @@ const DetectItem = () => {
           )}
         </div>
       </Container>
+      <Footer/>
     </div>
   )
 }

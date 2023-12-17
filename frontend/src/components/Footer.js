@@ -1,7 +1,6 @@
 import React from 'react'
-
 import PropTypes from 'prop-types'
-
+import { Link } from 'react-router-dom';
 import './footer.css'
 
 const Footer = (props) => {
@@ -11,12 +10,22 @@ const Footer = (props) => {
         <div className="footer-container">
           <span className="footer-logo">{props.Logo}</span>
           <nav className="footer-nav">
-            <span className="footer-nav1">{props.Nav1}</span>
-            <span className="footer-nav2">{props.Nav2}</span>
-            <span className="footer-nav3">{props.Nav3}</span>
-            <span className="footer-nav4">{props.Nav4}</span>
-            <span className="footer-nav5">{props.Nav5}</span>
-          </nav>
+          <span className="footer-nav-item">
+            <Link to="/" className="footer-nav1">{props.Nav1}</Link>
+          </span>
+          <span className="footer-nav-item">
+            <Link to="/greentrade" className="footer-nav2">{props.Nav2}</Link>
+          </span>
+          <span className="footer-nav-item">
+            <Link to="/marketplace" className="footer-nav3">{props.Nav3}</Link>
+          </span>
+          <span className="footer-nav-item">
+            <Link to="/weeklychallenge" className="footer-nav4">{props.Nav4}</Link>
+          </span>
+          <span className="footer-nav-item">
+            <Link to="/login" className="footer-nav4">{props.Nav5}</Link>
+          </span>
+        </nav>
         </div>
         <div className="footer-separator"></div>
         <div className="footer-container1">
@@ -42,10 +51,10 @@ Footer.defaultProps = {
   Logo: 'TRASH ARTIFY',
   text: '© 2023 myCompany, All Rights Reserved.',
   Nav1: 'Home',
-  Nav2: 'About',
-  Nav3: 'Features',
-  Nav4: 'Gallery',
-  Nav5: 'Impact',
+  Nav2: 'GreenTrade',
+  Nav3: 'Marketplace',
+  Nav4: 'Weekly Challenges',
+  Nav5: 'Trash To Art',
 }
 
 Footer.propTypes = {
