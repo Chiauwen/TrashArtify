@@ -3,16 +3,17 @@
   display: flex;
   padding: var(--dl-space-space-twounits);
   position: relative;
-  align-items: flex-start;
+  align-items: center;
   border-radius: var(--dl-radius-radius-radius8);
   flex-direction: row;
   justify-content: flex-start;
+  font-family: 'Montserrat', sans-serif;
   background-color: var(--dl-color-gray-white);
 }
 .feature-card-icon {
   fill: var(--dl-color-primary1-blue80);
-  width: 2rem;
-  height: 2rem;
+  width: 5rem;
+  height: 5rem;
   flex-shrink: 0;
   margin-right: var(--dl-space-space-oneandhalfunits);
 }
@@ -24,13 +25,18 @@
   justify-content: flex-start;
 }
 .feature-card-text {
-  font-family: "Raleway";
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
+  font-size: 22px;
+  text-align: left;
   line-height: 28px;
 }
 .feature-card-text1 {
   color: var(--dl-color-gray-800);
   line-height: 1.6;
+  text-align: left;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
 }
 @media(max-width: 767px) {
   .feature-card-feature-card {

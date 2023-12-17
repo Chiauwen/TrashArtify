@@ -11,10 +11,6 @@ const FAQ = (props) => {
       <div className="faq-faq-container">
         <div className="faq-faq1">
           <div className="faq-container">
-            <span className="faq-text sectionTitle">
-              <span>FAQ</span>
-              <br></br>
-            </span>
             <h2 className="faq-text03 heading2">{props.heading}</h2>
             <span className="faq-text04">
               <span>

@@ -11,8 +11,12 @@
 .question-text {
   font-weight: 700;
   line-height: 1.6;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
 }
 .question-text1 {
   color: var(--dl-color-gray-800);
   line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
 }

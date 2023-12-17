@@ -9,11 +9,7 @@ const Pricing = (props) => {
     <div className="pricing-pricing">
       <div className="pricing-pricing1">
         <div className="pricing-container">
-          <span className="pricing-text sectionTitle">
-            <span>Pricing</span>
-            <br></br>
-          </span>
-          <h2 className="pricing-pricing-heading heading2">
+          <h2 className="pricing-pricing-heading">
             {props.PricingHeading}
           </h2>
           <span className="pricing-pricing-sub-heading">
@@ -23,7 +19,7 @@ const Pricing = (props) => {
         <div className="pricing-container01">
           <div className="pricing-pricing-card">
             <div className="pricing-container02">
-              <span className="pricing-text03 heading3">{props.text}</span>
+              <span className="pricing-text03">{props.text}</span>
               <span className="pricing-free-plan-description">
                 {props.FreePlanDescription}
               </span>
@@ -63,7 +59,7 @@ const Pricing = (props) => {
                 </span>
               </div>
             </div>
-            <button className="pricing-button button">{props.button}</button>
+            <button className="pricing-button">{props.button}</button>
           </div>
           <div className="pricing-pricing-card1">
             <div className="pricing-container09">
@@ -112,7 +108,7 @@ const Pricing = (props) => {
                 </span>
               </div>
             </div>
-            <button className="pricing-button1 button">{props.button1}</button>
+            <button className="pricing-button1">{props.button1}</button>
           </div>
           <div className="pricing-pricing-card2">
             <div className="pricing-container17">
@@ -158,7 +154,7 @@ const Pricing = (props) => {
                 </span>
               </div>
             </div>
-            <button className="pricing-button2 button">{props.button2}</button>
+            <button className="pricing-button2">{props.button2}</button>
           </div>
         </div>
       </div>
