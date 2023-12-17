@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Header } from '../components'
 import Container from 'react-bootstrap/Container'
 import './DetectItem.css'
-const apiKey = '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'
+const apiKey = 'lalalal'
 function dataURLtoBlob(dataURL) {
   const arr = dataURL.split(',')
   const mime = arr[0].match(/:(.*?);/)[1]
@@ -23,15 +23,60 @@ const DetectItem = () => {
   const [detectionResult, setDetectionResult] = useState(null)
   const webcamRef = useRef(null)
   const [loading, setLoading] = useState(false)
+  const [lastDetectedType, setLastDetectedType] = useState(null);
+  const [refreshed, setRefreshed] = useState(false);
 
+  const handleRefresh = () => {
+    setRefreshed(true);
+    window.location.reload(); // Reload the page
+  };
+  
   const imageGenerator = async (trashType) => {
-    if (trashType === '') {
-      return 0
+    if (trashType === "" || trashType === lastDetectedType) {
+      return 0;
     }
 
-    setLoading(true)
-    // Your image generation logic here
-  }
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            inputs: `A beautiful, creative, unique but craftable handicraft projects using ${trashType}.`,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const imageUrl = URL.createObjectURL(blob);
+
+      setGeneratedImage(imageUrl);
+      setLastDetectedType(trashType);
+    } catch (error) {
+      console.error("Error generating image:", error);
+    } finally {
+      setLoading(false);
+    }
+    setRefreshed(true);
+  };
+
+  useEffect(() => {
+    if (detectionResult && detectionResult.length > 0) {
+      const trashType = detectionResult[0].trash_type;
+      imageGenerator(trashType);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detectionResult, refreshed]);
 
   useEffect(() => {
     // Fetch webcam results only if the camera is turned on
@@ -115,6 +160,7 @@ const DetectItem = () => {
       <Header />
       <h1 className="hero-heading">
         Trash Classifier & AI Craft Ideas Generator
+        <button onClick={handleRefresh}>Refresh</button>
       </h1>
       <Container className="main-container">
         <div className="left-section">
@@ -160,12 +206,8 @@ const DetectItem = () => {
           ) : (
             generatedImage && (
               <div>
-                <h2>Generated Ideas</h2>
-                <img
-                  src={generatedImage}
-                  alt="Craft Ideas"
-                  style={{ maxWidth: '100%' }}
-                />
+                <h2>Generated Ideas With {lastDetectedType}</h2>
+                <img src={generatedImage} alt="Craft Ideas" style={{ maxWidth: '100%' }} />
               </div>
             )
           )}
