@@ -3,6 +3,11 @@ from flask import Flask, Response, jsonify, request
 from flask_cors import CORS
 from webcam import webcam
 from photo import photo
+import torch
+import base64
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(f"Using device: {device}")
 
 app = Flask(__name__)
 CORS(app)
@@ -19,6 +24,7 @@ def generate_frames():
             frame, local_trash_info = next(frame_generator)
 
             ret_frame, jpeg_frame = cv2.imencode(".jpg", frame)
+            encoded_frame = base64.b64encode(jpeg_frame.tobytes()).decode('utf-8')
 
             trash_info = local_trash_info  # Update the global variable
 
@@ -30,10 +36,6 @@ def generate_frames():
         except StopIteration:
             break
 
-@app.route("/webcam_info")
-def webcam_info():
-    global trash_info  # Explicitly declare as global
-    return jsonify(trash_info)
         
 @app.route("/video_feed")
 def video_feed():
@@ -43,6 +45,8 @@ def video_feed():
         
 @app.route("/detect_item", methods=["OPTIONS", "POST"])
 def receive_data():
+    global trash_info
+
     if request.method == "OPTIONS":
         response = jsonify({"status": "success"})
 
@@ -63,10 +67,7 @@ def receive_data():
             return response
 
         elif data == "frame":
-            trashes_info = generate_frames()
-
-            trashes_info = list(trashes_info)
-
+            trashes_info = trash_info.copy() if trash_info else []
             response = jsonify(trashes_info)
             return response
 
@@ -85,6 +86,3 @@ def receive_data():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, threaded=True, use_reloader=False, debug=True)
-
-    
-    
