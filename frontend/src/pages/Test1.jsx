@@ -1,31 +1,25 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.css'
+import { Dropdown } from 'react-bootstrap'
 
 const Test1 = () => {
-  const sendDataToFlask = async () => {
-    try {
-      const response = await axios.post(
-        'http://localhost:5000/receive_data',
-        {
-          message: 'hello',
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error sending data to Flask:', error);
-    }
-  };
-
   return (
-    <div>
-      <button onClick={sendDataToFlask}>Send Data to Flask</button>
-    </div>
-  );
-};
+    <div style={{ display: 'block', width: 700, padding: 30 }}>
+      <h4>React-Bootstrap Dropdown Component</h4>
+      <div>
+        <label>
+          What do we eat?
+          <select>
+            <option value="fruit">Fruit</option>
 
-export default Test1;
+            <option value="vegetable">Vegetable</option>
+
+            <option value="meat">Meat</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  )
+}
+
+export default Test1

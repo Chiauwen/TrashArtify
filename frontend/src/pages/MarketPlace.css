@@ -5,13 +5,13 @@
     font-size: 50px;
     font-weight: bolder;
   }
+}
 
-  p {
-    font-size: 20px;
-    font-weight: 400;
-    text-align: center;
-    padding: 3rem;
-  }
+.marketplace p{
+  font-size: 30px;
+  text-align: center;
+  font-weight: 400;
+  margin: 3rem;
 }
 
 .g-4 {
@@ -19,5 +19,12 @@
     background-color: #47b685;
     font-size: 15px;
     font-weight: 700;
+  }
+
+  p{
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400;
+    margin: 3rem;
   }
 }

@@ -1,14 +1,46 @@
 import cv2
-import numpy as np
-from flask import Flask, request, jsonify
+from flask import Flask, Response, jsonify, request
 from flask_cors import CORS
-from main import main
-import base64
+from webcam import webcam
+from photo import photo
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
+trash_info = None  # Global variable
 
+def generate_frames():
+    global trash_info  # Explicitly declare as global
+
+    frame_generator = webcam()
+
+    while True:
+        try:
+            frame, local_trash_info = next(frame_generator)
+
+            ret_frame, jpeg_frame = cv2.imencode(".jpg", frame)
+
+            trash_info = local_trash_info  # Update the global variable
+
+            yield (
+                b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + jpeg_frame.tobytes() + b"\r\n\r\n"
+            )
+
+        except StopIteration:
+            break
+
+@app.route("/webcam_info")
+def webcam_info():
+    global trash_info  # Explicitly declare as global
+    return jsonify(trash_info)
+        
+@app.route("/video_feed")
+def video_feed():
+    return Response(
+        generate_frames(), mimetype="multipart/x-mixed-replace; boundary=frame"
+    )
+        
 @app.route("/detect_item", methods=["OPTIONS", "POST"])
 def receive_data():
     if request.method == "OPTIONS":
@@ -16,32 +48,28 @@ def receive_data():
 
     elif request.method == "POST":
         data = request.form.get("choice")
-        
+
         if data == "image":
             file = request.files["file"]
 
             print(f"Received data from React: {data}")
             file.save("user_upload/user.jpg")
-            
+
             temp = None
-            trashes_info = main(data, temp)
+            trashes_info = photo()
             trashes_info = list(trashes_info)
             response = jsonify(trashes_info)
 
             return response
-        
+
         elif data == "frame":
-            frame_data = request.form.get("frame")
-            frame = cv2.imdecode(np.fromstring(base64.b64decode(frame_data), dtype=np.uint8), 1)
-            print("Received frame from React")
-
-            trashes_info = main(data, frame)
+            trashes_info = generate_frames()
 
             trashes_info = list(trashes_info)
 
             response = jsonify(trashes_info)
             return response
-        
+
         else:
             response = jsonify({"status": "error", "message": "Invalid data type"})
             response.status_code = 400
@@ -56,4 +84,7 @@ def receive_data():
     return response
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, threaded=True, use_reloader=False, debug=True)
+
+    
+    
