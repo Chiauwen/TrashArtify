@@ -7,3 +7,5 @@ export { default as  Gallery} from './Gallery';
 export { default as  Header} from './Header';
 export { default as  Pricing} from './Pricing';
 export { default as  Question} from './Question';
+export { default as  ChallengeItem} from './challenge-item';
+export { default as  ChallengeList} from './ChallengeList';
