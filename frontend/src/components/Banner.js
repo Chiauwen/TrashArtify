@@ -8,13 +8,13 @@ const Banner = (props) => {
   return (
     <div className="banner-banner">
       <div className="banner-banner1">
-        <h1 className="banner-banner-heading heading2">
+        <h1 className="banner-banner-heading">
           {props.BannerHeading}
         </h1>
         <span className="banner-banner-sub-heading">
           {props.BannerSubHeading}
         </span>
-        <button className="banner-banner-button button">
+        <button className="banner-banner-button">
           {props.BannerButton}
         </button>
       </div>

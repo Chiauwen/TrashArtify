@@ -20,16 +20,14 @@
   padding-bottom: var(--dl-space-space-fourunits);
 }
 .gallery-gallery-heading {
-  text-align: center;
-  font-family: "Raleway";
-  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 }
 .gallery-gallery-sub-heading {
-  color: rgb(153, 153, 153);
+  color: var(--dl-color-gray-800);
+  font-size: 18px;
   text-align: center;
   line-height: 1.6;
-  padding-left: var(--dl-space-space-threeunits);
-  padding-right: var(--dl-space-space-threeunits);
 }
 .gallery-container {
   width: 100%;

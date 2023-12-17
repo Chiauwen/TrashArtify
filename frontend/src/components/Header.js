@@ -19,8 +19,8 @@ const Header = (props) => {
             <span className="header-nav5">{props.Nav5}</span>
           </nav>
           <div className="header-buttons">
-            <button className="header-login button">{props.Login}</button>
-            <button className="header-register button">{props.Register}</button>
+            <button className="header-login">{props.Login}</button>
+            <button className="header-register">{props.Register}</button>
           </div>
         </div>
         <div data-thq="thq-burger-menu" className="header-burger-menu">

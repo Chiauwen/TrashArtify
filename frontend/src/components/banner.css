@@ -23,12 +23,13 @@
 .banner-banner-heading {
   color: var(--dl-color-gray-white);
   text-align: center;
-  font-family: "Raleway";
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
 }
 .banner-banner-sub-heading {
   color: var(--dl-color-gray-white);
   max-width: var(--dl-size-size-maxwidth);
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
   line-height: 1.6;
 }
@@ -46,7 +47,8 @@
 }
 .banner-banner-button:hover {
   border-color: rgba(41, 20, 119, 0.9);
-  background-color: rgba(41, 20, 119, 0.9);
+  color: var(--dl-color-primary1-blue100);
+  background-color: var(--dl-color-gray-white);
 }
 @media(max-width: 991px) {
   .banner-banner-sub-heading {

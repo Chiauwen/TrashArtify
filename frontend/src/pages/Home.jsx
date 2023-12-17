@@ -24,6 +24,7 @@ const Home = (props) => {
 
       <Container>
         <div className="home-hero">
+          <div className="home-hero1">
             <div className="home-container1">
               <h1 className="home-hero-heading heading1">
                 Trash Artify: Turn Trash into Art
@@ -41,6 +42,7 @@ const Home = (props) => {
                 </button>
               </div>
             </div>
+          </div>
         </div>
         <div className="home-details">
           <div className="home-details1">
@@ -63,7 +65,7 @@ const Home = (props) => {
               </span>
             </div>
             <img
-              alt="img"
+              alt="image"
               src="https://images.unsplash.com/photo-1613574714687-c33b9e90200d?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMjUyNDkyMnw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
               className="home-details-image"
             />

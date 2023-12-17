@@ -7,7 +7,7 @@ import './question.css'
 const Question = (props) => {
   return (
     <div className="question-container">
-      <span className="question-text heading4">{props.Question}</span>
+      <span className="question-text">{props.Question}</span>
       <span className="question-text1">{props.Answer}</span>
     </div>
   )

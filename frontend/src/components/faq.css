@@ -36,11 +36,11 @@
 }
 .faq-text {
   color: var(--dl-color-primary1-blue80);
-  font-family: "Raleway";
+  font-family: 'Montserrat', sans-serif;
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
 .faq-text03 {
-  font-family: "Raleway";
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }

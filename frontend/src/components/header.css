@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+  padding: 0;
+}
 .header-header {
   width: 100%;
   display: flex;
@@ -5,8 +9,7 @@
   align-items: center;
   padding-top: var(--dl-space-space-oneandhalfunits);
   flex-direction: column;
-  padding-bottom: var(--dl-space-space-oneandhalfunits);
-  background-color: var(--dl-color-primary1-blue80);
+  padding-bottom: 20px;
 }
 .header-navbar-interactive {
   width: 90%;
@@ -18,9 +21,14 @@
   padding-left: var(--dl-space-space-threeunits);
   border-radius: 50px;
   padding-right: var(--dl-space-space-threeunits);
-  padding-bottom: var(--dl-space-space-oneandhalfunits);
+  padding-bottom: 20px;
   justify-content: space-between;
   background-color: var(--dl-color-gray-white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 .header-logo {
   font-size: 2em;
@@ -80,30 +88,27 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.header-login {
-  border-color: var(--dl-color-primary1-blue100);
-  border-width: 1px;
-  margin-right: var(--dl-space-space-twounits);
-  padding-left: 1.5rem;
-  border-radius: 45px;
-  padding-right: 1.5rem;
-}
+.header-login,
 .header-register {
-  color: var(--dl-color-gray-white);
+  margin: 10px; /* Adjust the margin as needed */
+  color: var(--dl-color-primary1-blue100);
+  font-size: 15px;
   transition: 0.3s;
   font-weight: bold;
-  border-color: var(--dl-color-primary1-blue100);
-  padding-left: 1.5rem;
-  border-radius: 45px;
-  padding-right: 1.5rem;
-  background-color: var(--dl-color-primary1-blue100);
+  padding: 1rem 2rem; /* Adjust the padding as needed */
+  border: 2px solid var(--dl-color-primary1-blue100);
+  border-radius: 30px;
+  background-color: var(--dl-color-primary1-white);
 }
-.header-register:hover {
+
+.header-register:hover,
+.header-login:hover {
   border-color: rgba(41, 20, 119, 0.9);
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding: 1rem 1.5rem; /* Adjust the padding on hover as needed */
   background-color: rgba(41, 20, 119, 0.9);
+  color: white
 }
+
 .header-burger-menu {
   display: none;
 }
