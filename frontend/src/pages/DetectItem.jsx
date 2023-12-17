@@ -4,9 +4,13 @@ import axios from 'axios'
 import { Header } from '../components'
 import Container from 'react-bootstrap/Container'
 import './DetectItem.css'
+<<<<<<< HEAD
 
 const apiKey = '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'
 
+=======
+const apiKey = 'lalalal'
+>>>>>>> e79b12c1a15226d2b7d3ae3c5cb2c844237df0c6
 function dataURLtoBlob(dataURL) {
   const arr = dataURL.split(',')
   const mime = arr[0].match(/:(.*?);/)[1]
@@ -54,7 +58,12 @@ const DetectItem = () => {
             Imagine crafting beautiful and practical items that showcase the versatility of ${trashType}. 
             Consider functionality, aesthetics, and sustainability in your suggestions. 
             Feel free to explore various techniques and materials, ensuring the projects are not only craftable 
+<<<<<<< HEAD
             but also environmentally friendly.`,
+=======
+            but also environmentally friendly.
+            `,
+>>>>>>> e79b12c1a15226d2b7d3ae3c5cb2c844237df0c6
           }),
         }
       )
