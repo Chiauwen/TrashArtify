@@ -11,27 +11,26 @@ import uchallenge1 from '../assets/user-challenge1.jpg';
 import uchallenge2 from '../assets/user-challenge2.png';
 import uchallenge3 from '../assets/user-challenge3.jpg';
 
-
 const topChallengesData = [
   {
     id: 1,
     image: challenge1,
-    description: 'Required Material',
+    description: 'Required Material: plastics bottle and paper',
   },
   {
     id: 2,
     image: challenge2,
-    description: 'Description for Challenge 2',
+    description: 'Required Material: plastics bottle and aluminium can',
   },
   {
     id: 3,
     image: challenge3,
-    description: 'Description for Challenge 3',
+    description: 'Required Material: newspaper',
   },
   {
     id: 4,
     image: challenge4,
-    description: 'Description for Challenge 4',
+    description: 'Required Material: plastic bottle and aluminium can',
   },
 ];
 
@@ -39,35 +38,41 @@ const weeklyChallengesData = [
   {
     id: 1,
     image: uchallenge1,
-    description: 'Description for Challenge 3',
+    description: 'Vase',
   },
   {
     id: 2,
     image: uchallenge2,
-    description: 'Description for Challenge 4',
+    description: 'Newspaper handmade flower',
   },
   {
     id: 3,
     image: uchallenge3,
-    description: 'Description for Challenge 4',
+    description: 'coloring paper',
   },
 ];
 
-const ChallengeList = ({ challenges, onVote }) => {
+const ChallengeList = ({ challenges, isTopChallenge, onVote, votes }) => {
   return (
     <Row xs={1} md={2} lg={4} className="g-4">
       {challenges.map((challenge) => (
-        <ChallengeItem key={challenge.id} challenge={challenge} onVote={onVote} />
+        <ChallengeItem
+          key={challenge.id}
+          challenge={challenge}
+          isTopChallenge={isTopChallenge}
+          onVote={onVote}
+          votes={votes}
+        />
       ))}
     </Row>
   );
 };
 
-const ChallengeItem = ({ challenge, onVote }) => {
-  const [votes, setVotes] = useState(0);
+const ChallengeItem = ({ challenge, isTopChallenge, onVote, votes }) => {
+  const [localVotes, setLocalVotes] = useState(0);
 
   const handleVote = () => {
-    setVotes((prevVotes) => prevVotes + 1);
+    setLocalVotes((prevVotes) => prevVotes + 1);
     onVote(challenge.id);
   };
 
@@ -83,9 +88,16 @@ const ChallengeItem = ({ challenge, onVote }) => {
           <Card.Title>{challenge.name}</Card.Title>
           <Card.Text>{challenge.description}</Card.Text>
           <Card.Text>{challenge.price}</Card.Text>
-          <Button variant="primary" onClick={handleVote}>
-            Try Now
-          </Button>
+          {isTopChallenge ? (
+            <Button variant="primary">View Steps</Button>
+          ) : (
+            <>
+              <Button variant="primary" onClick={handleVote}>
+                Vote Now
+              </Button>
+              <p>Total Votes: {votes[challenge.id] || 0}</p>
+            </>
+          )}
         </Card.Body>
       </Card>
     </Col>
@@ -109,12 +121,17 @@ const WeeklyChallengePage = () => {
       <Container>
         <div className="top-challenge">
           <h2>Top Challenges this Week</h2>
-          <ChallengeList challenges={topChallengesData} onVote={handleVote} />
+          <ChallengeList challenges={topChallengesData} isTopChallenge={true} />
         </div>
 
         <div className="week-challenge">
-          <h2>Weekly Challenges</h2>
-          <ChallengeList challenges={weeklyChallengesData} onVote={handleVote} />
+          <h2>Weekly Challenges Handcraft</h2>
+          <ChallengeList
+            challenges={weeklyChallengesData}
+            onVote={handleVote}
+            isTopChallenge={false}
+            votes={votes}
+          />
           <hr />
         </div>
       </Container>
