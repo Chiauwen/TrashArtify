@@ -43,6 +43,12 @@ def video_feed():
         generate_frames(), mimetype="multipart/x-mixed-replace; boundary=frame"
     )
         
+@app.route("/webcam_info")
+def get_webcam_info():
+    global trash_info
+    trashes_info = trash_info.copy() if trash_info else []
+    return jsonify(trashes_info)
+
 @app.route("/detect_item", methods=["OPTIONS", "POST"])
 def receive_data():
     global trash_info

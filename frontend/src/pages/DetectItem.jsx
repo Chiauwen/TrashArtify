@@ -26,7 +26,7 @@ const DetectItem = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/detect_item');
+        const response = await axios.get('http://localhost:5000/webcam_info');
         setDetectionResult(response.data);
       } catch (error) {
         console.error('Error getting detection result:', error);
