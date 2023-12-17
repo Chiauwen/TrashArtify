@@ -4,7 +4,9 @@ import axios from 'axios'
 import { Header } from '../components'
 import Container from 'react-bootstrap/Container'
 import './DetectItem.css'
+
 const apiKey = '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'
+
 function dataURLtoBlob(dataURL) {
   const arr = dataURL.split(',')
   const mime = arr[0].match(/:(.*?);/)[1]
