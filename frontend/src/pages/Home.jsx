@@ -23,37 +23,15 @@ const Home = (props) => {
       <Header />
 
       <Container>
-        <div className="home-hero">
-          <div className="home-hero1">
-            <div className="home-container1">
-              <h1 className="home-hero-heading heading1">
-                Trash Artify: Turn Trash into Art
-              </h1>
-              <span className="home-hero-sub-heading">
-                Unlock your creativity and make a positive impact on the
-                environment
-              </span>
-              <div className="home-btn-group">
-                <button className="home-hero-button1 button">
-                  Get Started
-                </button>
-                <button className="home-hero-button2 button">
-                  Learn More →
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="home-details">
           <div className="home-details1">
             <div className="home-container2">
-              <span className="home-text sectionTitle">
-                <span>Details</span>
-                <br></br>
-              </span>
-              <h2 className="home-details-heading heading2">
-                Empowering Individuals to Create a Greener, Artistic Future
-              </h2>
+              
+            <div className="home-container1">
+              <h1 className="home-hero-heading">
+                TrashArtify: Turn Trash into Art
+              </h1>
+            </div>
               <span className="home-details-sub-heading">
                 Trash Artify is an AI-driven platform that revolutionizes the
                 way we think about waste. By scanning recyclables through object
@@ -63,9 +41,18 @@ const Home = (props) => {
                 impact. Together, let&apos;s turn trash into art and contribute
                 to a greener, artistic future.
               </span>
+              
+              <div className="home-btn-group">
+                <button className="home-hero-button1">
+                  Get Started
+                </button>
+                <button className="home-hero-button2">
+                  Learn More →
+                </button>
+              </div>
             </div>
             <img
-              alt="image"
+              alt="main"
               src="https://images.unsplash.com/photo-1613574714687-c33b9e90200d?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w5MTMyMXwwfDF8cmFuZG9tfHx8fHx8fHx8MTcwMjUyNDkyMnw&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400"
               className="home-details-image"
             />
@@ -75,11 +62,7 @@ const Home = (props) => {
           <div className="home-features-container">
             <div className="home-features1">
               <div className="home-container3">
-                <span className="home-text3 sectionTitle">
-                  <span>features</span>
-                  <br></br>
-                </span>
-                <h2 className="home-features-heading heading2">Features</h2>
+                <h2 className="home-features-heading">Features</h2>
                 <span className="home-features-sub-heading">
                   Unlock the potential of Trash Artify with these exciting
                   features

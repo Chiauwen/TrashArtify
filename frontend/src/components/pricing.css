@@ -35,6 +35,7 @@
 .pricing-pricing-heading {
   font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
+  font-weight: bold;
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
 .pricing-pricing-sub-heading {
@@ -55,7 +56,7 @@
   gap: var(--dl-space-space-twounits);
   width: 100%;
   height: auto;
-  height: 690px;
+  height: 750px;
   display: flex;
   padding: var(--dl-space-space-threeunits);
   max-width: 450px;
@@ -196,7 +197,7 @@
   align-items: flex-start;
   border-radius: var(--dl-radius-radius-radius8);
   flex-direction: column;
-  height: 690px;
+  height: 750;
   background-color: var(--dl-color-primary1-blue60);
 }
 .pricing-container09 {
@@ -342,7 +343,7 @@
   gap: var(--dl-space-space-twounits);
   width: 100%;
   display: flex;
-  height: 690px;
+  height: 750px;
   padding: var(--dl-space-space-threeunits);
   max-width: 450px;
   min-height: 450px;
