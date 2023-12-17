@@ -5,98 +5,110 @@ import { Header } from '../components'
 import Container from 'react-bootstrap/Container'
 import './DetectItem.css'
 const apiKey = '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'
-
+function dataURLtoBlob(dataURL) {
+  const arr = dataURL.split(',')
+  const mime = arr[0].match(/:(.*?);/)[1]
+  const bstr = atob(arr[1])
+  let n = bstr.length
+  const u8arr = new Uint8Array(n)
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n)
+  }
+  return new Blob([u8arr], { type: mime })
+}
 const DetectItem = () => {
-  const [generatedImage, setGeneratedImage] = useState(null);
-  const [image, setImage] = useState(null);
-  const [showCamera, setShowCamera] = useState(false);
-  const [detectionResult, setDetectionResult] = useState(null);
-  const webcamRef = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState(null)
+  const [image, setImage] = useState(null)
+  const [showCamera, setShowCamera] = useState(false)
+  const [detectionResult, setDetectionResult] = useState(null)
+  const webcamRef = useRef(null)
+  const [loading, setLoading] = useState(false)
 
   const imageGenerator = async (trashType) => {
     if (trashType === '') {
-      return 0;
+      return 0
     }
 
-    setLoading(true);
+    setLoading(true)
     // Your image generation logic here
-  };
+  }
 
   useEffect(() => {
-    const fetchData = async () => {
+    // Fetch webcam results only if the camera is turned on
+    const fetchWebcamData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/webcam_info');
         setDetectionResult(response.data);
       } catch (error) {
-        console.error('Error getting detection result:', error);
+        console.error('Error getting webcam detection result:', error);
       }
     };
-  
-    const intervalId = setInterval(fetchData, 2000); // Fetch data every 2 seconds
-  
-    // Cleanup on component unmount
-    return () => clearInterval(intervalId);
-  }, []);
+
+    const intervalId = setInterval(() => {
+      // Fetch webcam results only if the camera is turned on
+      if (showCamera) {
+        fetchWebcamData();
+      }
+    }, 2000); // Adjust the interval time as needed
+
+    return () => clearInterval(intervalId); // Cleanup on component unmount
+  }, [showCamera]);
+
 
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    const file = e.target.files[0]
+    const reader = new FileReader()
 
     reader.onloadend = () => {
-      setImage(reader.result);
-      setShowCamera(false);
+      setImage(reader.result)
+      setShowCamera(false)
 
-      const formData = new FormData();
-      formData.append('choice', 'image');
-      formData.append('file', file);
+      const formData = new FormData()
+      formData.append('choice', 'image')
+      formData.append('file', file)
 
-      selection(formData);
-    };
+      selection(formData)
+    }
 
     if (file) {
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
     }
-  };
+  }
 
   const handleCameraToggle = async () => {
     setShowCamera(!showCamera);
     setImage(null);
-
+  
     const formData = new FormData();
     formData.append('choice', 'frame');
-
-    if (showCamera) {
+  
+    if (showCamera && webcamRef.current) {
       const screenshot = webcamRef.current.getScreenshot();
       formData.append('frame', screenshot);
     }
-
+  
     selection(formData);
-  };
+  }
+  
 
   const selection = async (formData) => {
     try {
-      const response = await axios.post('http://localhost:5000/detect_item', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      setDetectionResult(response.data);
+      const response = await axios.post(
+        'http://localhost:5000/detect_item',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      )
+      setDetectionResult(response.data)
     } catch (error) {
-      console.error('Error sending data to Flask:', error);
+      console.error('Error sending data to Flask:', error)
     }
-  };
+  }
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      // Make a request to get the latest detection result
-      axios.get('http://localhost:5000/detect_item')
-        .then(response => setDetectionResult(response.data))
-        .catch(error => console.error('Error getting detection result:', error));
-    }, 2000); // Adjust the interval time as needed
   
-    return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, []);
 
   return (
     <div className="detection">

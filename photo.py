@@ -6,8 +6,10 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
 model = YOLO("trash.pt").to(device)
+paper_model = YOLO("best.pt").to(device)
 
 classNames = ["BIODEGRADABLE", "CARDBOARD", "GLASS", "METAL", "PAPER", "PLASTIC"]
+class_paper = ["PAPER"]
 
 def photo():
     
@@ -69,6 +71,7 @@ def classify_trash(class_ids):
 
 def image(data):
     results = model(data, show=True, conf=0.7, save=True, project='user_upload')
+    result_paper = paper_model(data, show=True, conf=0.7, save=True, project='user_upload')
 
     class_ids = []
 
@@ -76,6 +79,12 @@ def image(data):
         for x in r:
             cls = x.boxes.cls
             cls_value = int(cls.item())
+            class_ids.append(cls_value)
+            
+    for r in result_paper:
+        for x in r:
+            cls = x.boxes.cls
+            cls_value = 4
             class_ids.append(cls_value)
 
     print("All Class IDs:", class_ids)
