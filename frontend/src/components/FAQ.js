@@ -11,7 +11,7 @@ const FAQ = (props) => {
       <div className="faq-faq-container">
         <div className="faq-faq1">
           <div className="faq-container">
-            <h2 className="faq-text03 heading2">{props.heading}</h2>
+            <h2 className="faq-text03">{props.heading}</h2>
             <span className="faq-text04">
               <span>
                 Here are some of the most common questions that we get.

@@ -2,25 +2,33 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './header.css'
 import logoimg from '../assets/logo.png'
+import { Link } from 'react-router-dom';
 
 const Header = (props) => {
   return (
-    <div className="header-header">
+    <div className="header-header"  tabIndex="-1">
       <header data-thq="thq-navbar" className="header-navbar-interactive">
-        <span className="header-logo">
-          <img src={logoimg} alt="Logo" width="250" height="150"/>
-        </span>
+      <span className="header-logo" tabIndex="-1">
+        <img src={logoimg} alt="Logo" width="250" height="150"/>
+      </span>
         <div data-thq="thq-navbar-nav" className="header-desktop-menu">
-          <nav className="header-links">
-            <span className="header-nav1">{props.Nav1}</span>
-            <span className="header-nav2">{props.Nav2}</span>
-            <span className="header-nav3">{props.Nav3}</span>
-            <span className="header-nav4">{props.Nav4}</span>
-            <span className="header-nav5">{props.Nav5}</span>
-          </nav>
+        <nav className="header-links">
+          <span className="header-nav-item">
+            <Link to="/" className="header-nav1">{props.Nav1}</Link>
+          </span>
+          <span className="header-nav-item">
+            <Link to="/greentrade" className="header-nav2">{props.Nav2}</Link>
+          </span>
+          <span className="header-nav-item">
+            <Link to="/marketplace" className="header-nav3">{props.Nav3}</Link>
+          </span>
+          <span className="header-nav-item">
+            <Link to="/weeklychallenges" className="header-nav4">{props.Nav4}</Link>
+          </span>
+        </nav>
           <div className="header-buttons">
-            <button className="header-login">{props.Login}</button>
-            <button className="header-register">{props.Register}</button>
+          <Link to="/login" className="header-login">{props.Login}</Link>
+          <Link to="/register" className="header-register">{props.Register}</Link>
           </div>
         </div>
         <div data-thq="thq-burger-menu" className="header-burger-menu">
@@ -72,18 +80,16 @@ const Header = (props) => {
 Header.defaultProps = {
   Logo: logoimg,
   Nav1: 'Home',
-  Nav2: 'About',
-  Nav3: 'Features',
-  Nav4: 'Gallery',
-  Nav5: 'Impact',
+  Nav2: 'GreenTrade',
+  Nav3: 'Marketplace',
+  Nav4: 'Weekly Challenges',
   Login: 'Login',
   Register: 'Register',
   Logo1: 'TRASH ARTIFY',
   Nav11: 'Home',
-  Nav21: 'About',
-  Nav31: 'Features',
-  Nav41: 'Gallery',
-  Nav51: 'Impact',
+  Nav21: 'GreenTrade',
+  Nav31: 'Marketplace',
+  Nav41: 'Weekly Challenges',
   Login1: 'Login',
   Register1: 'Register',
 }

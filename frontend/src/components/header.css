@@ -50,6 +50,7 @@ body {
 }
 .header-nav1 {
   transition: 0.3s;
+  color: black;
 }
 .header-nav1:hover {
   color: #3d6e70ff;
@@ -57,6 +58,7 @@ body {
 .header-nav2 {
   transition: 0.3s;
   margin-left: var(--dl-space-space-twounits);
+  color: black;
 }
 .header-nav2:hover {
   color: #3d6e70ff;
@@ -64,6 +66,7 @@ body {
 .header-nav3 {
   transition: 0.3s;
   margin-left: var(--dl-space-space-twounits);
+  color: black;
 }
 .header-nav3:hover {
   color: #3d6e70ff;
@@ -71,22 +74,31 @@ body {
 .header-nav4 {
   transition: 0.3s;
   margin-left: var(--dl-space-space-twounits);
+  color: black;
 }
 .header-nav4:hover {
   color: #3d6e70ff;
 }
 .header-nav5 {
   transition: 0.3s;
+  color: black;
+  color: black;
   margin-left: var(--dl-space-space-twounits);
 }
 .header-nav5:hover {
   color: #3d6e70ff;
+}
+.header-links a {
+  text-decoration: none;
 }
 .header-buttons {
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
+}
+.header-buttons a {
+  text-decoration: none;
 }
 .header-login,
 .header-register {

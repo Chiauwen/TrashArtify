@@ -62,13 +62,10 @@
   font-size: 18px;
   transition: 0.3s;
   font-weight: bold;
-  padding-top: 1.5rem;
   border-color: var(--dl-color-primary1-blue100);
   border-width: 2px;
-  padding-left: 3rem;
   border-radius: 45px;
-  padding-right: 3rem;
-  padding-bottom: 1.5rem;
+  padding: 20px;
   background-color: var(--dl-color-primary1-white);
 }
 .home-hero-button1:hover {
@@ -77,18 +74,14 @@
   background-color: rgba(41, 20, 119, 0.9);
 }
 .home-hero-button2 {
-  margin: 20px;
   color: var(--dl-color-primary1-blue100);
   font-size: 18px;
   transition: 0.3s;
   font-weight: bold;
-  padding-top: 1.5rem;
   border-color: var(--dl-color-primary1-blue100);
   border-width: 2px;
-  padding-left: 3rem;
+  padding: 20px;
   border-radius: 45px;
-  padding-right: 3rem;
-  padding-bottom: 1.5rem;
   background-color: var(--dl-color-primary1-white);
 }
 .home-hero-button2:hover {
@@ -103,7 +96,8 @@
   height: auto;
   display: flex;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 140px;
+  margin-bottom: 20px;
   justify-content: center;
 }
 .home-hero-heading,
@@ -139,7 +133,6 @@
 .home-btn-group {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 .home-details-image {
   width: 100%;
@@ -238,11 +231,13 @@
 .home-features-heading {
   font-family: 'Montserrat', sans-serif;
   line-height: 1.6;
+  font-weight: bold;
   margin-bottom: var(--dl-space-space-oneandhalfunits);
 }
 .home-features-sub-heading {
   color: var(--dl-color-gray-800);
   font-size: 18px;
+  font-weight: bold;
   text-align: center;
   line-height: 1.6;
 }
@@ -306,6 +301,7 @@
   }
   .home-details-heading {
     text-align: center;
+    font-weight: bold;
   }
   .home-details-sub-heading {
     text-align: center;
