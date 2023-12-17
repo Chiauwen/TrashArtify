@@ -12,7 +12,6 @@ import {
   Login,
   Register,
   MarketPlace,
-  Test1,
 } from './pages'
 
 const router = createBrowserRouter([
@@ -23,11 +22,6 @@ const router = createBrowserRouter([
   {
     path: '/DetectItem',
     element: < DetectItem/>,
-  },
-
-  {
-    path: '/Test1',
-    element: < Test1/>,
   },
 
   {
