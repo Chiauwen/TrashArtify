@@ -1,15 +1,14 @@
-h1{
+h1 {
   margin-top: 4rem;
   text-align: center;
-  font-weight: bolder
+  font-weight: bolder;
 }
-
 
 .main-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 10rem; /* This ensures the container takes up the full height of the viewport */
+  margin-top: 5rem; /* Adjusted margin for better spacing */
 }
 
 .left-section,
@@ -26,25 +25,25 @@ h1{
 }
 
 .detect-item {
-  /* margin: 10rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 400px; /* Adjusted max-width for better containment */
+  margin: 0 auto; /* Center the detect-item */
 }
 
 .detect-item button {
-  /* Initial styles */
   width: 200px;
   height: 40px;
   background-color: #007bff;
   color: #ffffff;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Add smooth transition */
+  transition: background-color 0.3s ease;
   border-radius: 20px;
+  margin-top: 1.5rem; /* Adjusted margin for better spacing */
 
-  /* Optional: Style the image inside the button */
   img {
     width: 20px;
     height: 20px;
@@ -53,38 +52,41 @@ h1{
 }
 
 button:hover {
-  background-color: #0056b3; /* Change background color on hover */
+  background-color: #0056b3;
 }
 
 #webcam {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
-.photo h2{
-  margin: 3rem 0 3rem 0;
-  font-size: 30px;
-  img{
-    height: 300px;
-    width: auto;
-  }
+.photo h2 {
+  margin: 2rem 0; /* Adjusted margin for better spacing */
+  font-size: 24px; /* Adjusted font-size for better readability */
 }
 
-.photo-result h2{
-  margin: 3rem 0 3rem 0;
-  font-size: 40px;
+.photo img {
+  max-height: 300px;
+  width: auto;
+}
+
+.photo-result h2 {
+  margin: 2rem 0; /* Adjusted margin for better spacing */
+  font-size: 30px; /* Adjusted font-size for better readability */
   font-weight: bolder;
 }
 
-.photo-result p{
-  font-size: 20px;
+.photo-result p {
+  font-size: 18px; /* Adjusted font-size for better readability */
+  margin-bottom: 0.5rem; /* Adjusted margin for better spacing */
 }
 
-/* Add additional styling as needed */
 .input input {
-  margin-bottom: 10px; /* Add margin to create space between elements */
+  margin-bottom: 10px;
 }
 
-h4, h5, h2 {
+h4,
+h5,
+h2 {
   margin: 0;
   padding: 0;
 }

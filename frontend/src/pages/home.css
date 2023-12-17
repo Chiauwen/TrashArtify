@@ -96,7 +96,6 @@
   height: auto;
   display: flex;
   align-items: center;
-  margin-top: 140px;
   margin-bottom: 20px;
   justify-content: center;
 }
@@ -139,7 +138,7 @@
   max-width: 400px;
   height: auto;
   border-radius: 8px;
-  margin-top: 20px;
+  margin-top: 60px;
 }
 
 .home-details1 {
@@ -147,7 +146,6 @@
   display: flex;
   max-width: var(--dl-size-size-maxwidth);
   align-items: center;
-  padding-top: var(--dl-space-space-fourunits);
   padding-left: var(--dl-space-space-threeunits);
   padding-right: var(--dl-space-space-threeunits);
   padding-bottom: var(--dl-space-space-fourunits);
