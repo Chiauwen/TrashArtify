@@ -63,6 +63,10 @@ button:hover {
 .photo h2{
   margin: 3rem 0 3rem 0;
   font-size: 30px;
+  img{
+    height: 300px;
+    width: auto;
+  }
 }
 
 .photo-result h2{

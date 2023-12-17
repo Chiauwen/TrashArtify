@@ -70,9 +70,8 @@ def webcam():
                     or currentClass == "CARDBOARD"
                     or currentClass == "GLASS"
                     or currentClass == "METAL"
-                    or currentClass == "PAPER"
                     or currentClass == "PLASTIC"
-                ) and conf > 0.3:
+                ) and conf > 0.5:
                     x1, y1, x2, y2 = box.xyxy[0]
                     cv2.rectangle(
                         frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4
