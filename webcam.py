@@ -6,8 +6,13 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
 model = YOLO("trash.pt").to(device)
+paper_model = YOLO("paper.pt").to(device)
+bottle_model = YOLO("bottle.pt").to(device)
+
 
 classNames = ["BIODEGRADABLE", "CARDBOARD", "GLASS", "METAL", "PAPER", "PLASTIC"]
+class_paper = ["PAPER"]
+class_bottle = ["BOTTLE"]
 
 cap = cv2.VideoCapture(0)
 
@@ -71,7 +76,7 @@ def webcam():
                     or currentClass == "GLASS"
                     or currentClass == "METAL"
                     or currentClass == "PLASTIC"
-                ) and conf > 0.5:
+                ) and conf > 0.7:
                     x1, y1, x2, y2 = box.xyxy[0]
                     cv2.rectangle(
                         frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 255, 0), 4

@@ -4,13 +4,9 @@ import axios from 'axios'
 import { Header } from '../components'
 import Container from 'react-bootstrap/Container'
 import './DetectItem.css'
-<<<<<<< HEAD
 
 const apiKey = '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'
 
-=======
-const apiKey = 'lalalal'
->>>>>>> 8db7ab380e48ce784e071cf1a843e87a4a6c24ec
 function dataURLtoBlob(dataURL) {
   const arr = dataURL.split(',')
   const mime = arr[0].match(/:(.*?);/)[1]
@@ -29,82 +25,85 @@ const DetectItem = () => {
   const [detectionResult, setDetectionResult] = useState(null)
   const webcamRef = useRef(null)
   const [loading, setLoading] = useState(false)
-  const [lastDetectedType, setLastDetectedType] = useState(null);
-  const [refreshed, setRefreshed] = useState(false);
+  const [lastDetectedType, setLastDetectedType] = useState(null)
+  const [refreshed, setRefreshed] = useState(false)
 
   const handleRefresh = () => {
-    setRefreshed(true);
-    window.location.reload(); // Reload the page
-  };
-  
+    setRefreshed(true)
+    window.location.reload() // Reload the page
+  }
+
   const imageGenerator = async (trashType) => {
-    if (trashType === "" || trashType === lastDetectedType) {
-      return 0;
+    if (trashType === '' || trashType === lastDetectedType) {
+      return 0
     }
 
-    setLoading(true);
+    setLoading(true)
 
     try {
       const response = await fetch(
-        "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0",
+        'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0',
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${apiKey}`,
           },
           body: JSON.stringify({
-            inputs: `A beautiful, creative, unique but craftable handicraft projects using ${trashType}.`,
+            inputs: `Generate unique and creative handicraft ideas using ${trashType}. 
+            Imagine crafting beautiful and practical items that showcase the versatility of ${trashType}. 
+            Consider functionality, aesthetics, and sustainability in your suggestions. 
+            Feel free to explore various techniques and materials, ensuring the projects are not only craftable 
+            but also environmentally friendly.`,
           }),
         }
-      );
+      )
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error(`HTTP error! Status: ${response.status}`)
       }
 
-      const blob = await response.blob();
-      const imageUrl = URL.createObjectURL(blob);
+      const blob = await response.blob()
+      const imageUrl = URL.createObjectURL(blob)
 
-      setGeneratedImage(imageUrl);
-      setLastDetectedType(trashType);
+      setGeneratedImage(imageUrl)
+      setLastDetectedType(trashType)
     } catch (error) {
-      console.error("Error generating image:", error);
+      console.error('Error generating image:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-    setRefreshed(true);
-  };
+    setRefreshed(true)
+  }
 
   useEffect(() => {
     if (detectionResult && detectionResult.length > 0) {
-      const trashType = detectionResult[0].trash_type;
-      imageGenerator(trashType);
+      const trashType = detectionResult[0].trash_type
+      imageGenerator(trashType)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [detectionResult, refreshed]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [detectionResult, refreshed])
 
   useEffect(() => {
     // Fetch webcam results only if the camera is turned on
     const fetchWebcamData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/webcam_info');
-        setDetectionResult(response.data);
+        const response = await axios.get('http://localhost:5000/webcam_info')
+        setDetectionResult(response.data)
       } catch (error) {
-        console.error('Error getting webcam detection result:', error);
+        console.error('Error getting webcam detection result:', error)
       }
-    };
+    }
 
     const intervalId = setInterval(() => {
       // Fetch webcam results only if the camera is turned on
       if (showCamera) {
-        fetchWebcamData();
+        fetchWebcamData()
       }
-    }, 2000); // Adjust the interval time as needed
+    }, 2000) // Adjust the interval time as needed
 
-    return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, [showCamera]);
-
+    return () => clearInterval(intervalId) // Cleanup on component unmount
+  }, [showCamera])
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0]
@@ -127,20 +126,19 @@ const DetectItem = () => {
   }
 
   const handleCameraToggle = async () => {
-    setShowCamera(!showCamera);
-    setImage(null);
-  
-    const formData = new FormData();
-    formData.append('choice', 'frame');
-  
+    setShowCamera(!showCamera)
+    setImage(null)
+
+    const formData = new FormData()
+    formData.append('choice', 'frame')
+
     if (showCamera && webcamRef.current) {
-      const screenshot = webcamRef.current.getScreenshot();
-      formData.append('frame', screenshot);
+      const screenshot = webcamRef.current.getScreenshot()
+      formData.append('frame', screenshot)
     }
-  
-    selection(formData);
+
+    selection(formData)
   }
-  
 
   const selection = async (formData) => {
     try {
@@ -159,14 +157,11 @@ const DetectItem = () => {
     }
   }
 
-  
-
   return (
     <div className="detection">
       <Header />
       <h1 className="hero-heading">
         Trash Classifier & AI Craft Ideas Generator
-        <button onClick={handleRefresh}>Refresh</button>
       </h1>
       <Container className="main-container">
         <div className="left-section">
@@ -213,7 +208,11 @@ const DetectItem = () => {
             generatedImage && (
               <div>
                 <h2>Generated Ideas With {lastDetectedType}</h2>
-                <img src={generatedImage} alt="Craft Ideas" style={{ maxWidth: '100%' }} />
+                <img
+                  src={generatedImage}
+                  alt="Craft Ideas"
+                  style={{ maxWidth: '100%' }}
+                />
               </div>
             )
           )}

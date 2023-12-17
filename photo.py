@@ -6,10 +6,13 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
 model = YOLO("trash.pt").to(device)
-paper_model = YOLO("best.pt").to(device)
+paper_model = YOLO("paper.pt").to(device)
+bottle_model = YOLO("bottle.pt").to(device)
+
 
 classNames = ["BIODEGRADABLE", "CARDBOARD", "GLASS", "METAL", "PAPER", "PLASTIC"]
 class_paper = ["PAPER"]
+class_bottle = ["BOTTLE"]
 
 def photo():
     
@@ -44,7 +47,7 @@ def classify_trash(class_ids):
             trash_type = "cardboard"
         elif class_id == 2:
             recyclable_type = "recyclable"
-            trash_type = "glass"
+            trash_type = "glass jar"
         elif class_id == 3:
             recyclable_type = "non-recyclable"
             trash_type = "metal"
@@ -54,6 +57,9 @@ def classify_trash(class_ids):
         elif class_id == 5:
             recyclable_type = "recyclable"
             trash_type = "plastic"
+        elif class_id == 6:
+            recyclable_type = "recyclable"
+            trash_type = "plastic bottle"
         else:
             recyclable_type = "unknown"
             trash_type = "unknown"
@@ -72,6 +78,7 @@ def classify_trash(class_ids):
 def image(data):
     results = model(data, show=True, conf=0.7, save=True, project='user_upload')
     result_paper = paper_model(data, show=True, conf=0.7, save=True, project='user_upload')
+    result_bottle = bottle_model(data, show=True, conf=0.7, save=True, project='user_upload')
 
     class_ids = []
 
@@ -85,6 +92,12 @@ def image(data):
         for x in r:
             cls = x.boxes.cls
             cls_value = 4
+            class_ids.append(cls_value)
+            
+    for r in result_bottle:
+        for x in r:
+            cls = x.boxes.cls
+            cls_value = 6
             class_ids.append(cls_value)
 
     print("All Class IDs:", class_ids)
