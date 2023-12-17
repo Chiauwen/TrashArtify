@@ -48,7 +48,12 @@ const DetectItem = () => {
             Authorization: `Bearer ${apiKey}`,
           },
           body: JSON.stringify({
-            inputs: `A beautiful, creative, unique but craftable handicraft projects using ${trashType}.`,
+            inputs: `Generate unique and creative handicraft ideas using ${trashType}. 
+            Imagine crafting beautiful and practical items that showcase the versatility of ${trashType}. 
+            Consider functionality, aesthetics, and sustainability in your suggestions. 
+            Feel free to explore various techniques and materials, ensuring the projects are not only craftable 
+            but also environmentally friendly.
+            `,
           }),
         }
       );
