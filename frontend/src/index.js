@@ -7,7 +7,7 @@ import './index.css'
 import {  
   LandingPage,
   DetectItem,
-  WeeklyChallenge,
+  WeeklyChallengePage,
   GreenTrade,
   MarketPlace,
   Test1,
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/WeeklyChallenge',
-    element: <WeeklyChallenge />,
+    path: '/WeeklyChallengePage',
+    element: <WeeklyChallengePage />,
   },
   {
     path: '/GreenTrade',

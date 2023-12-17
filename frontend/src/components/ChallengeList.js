@@ -6,6 +6,7 @@ const ChallengeList = ({ challenges, onVote }) => {
   return (
     <div>
       <h2>Current Challenges</h2>
+      <h1></h1>
       <ul>
         {challenges.map(challenge => (
           <ChallengeItem key={challenge.id} challenge={challenge} onVote={onVote} />
