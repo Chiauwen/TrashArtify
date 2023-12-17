@@ -23,7 +23,7 @@ const Header = (props) => {
             <Link to="/marketplace" className="header-nav3">{props.Nav3}</Link>
           </span>
           <span className="header-nav-item">
-            <Link to="/weeklychallenge" className="header-nav4">{props.Nav4}</Link>
+            <Link to="/WeeklyChallengePage" className="header-nav4">{props.Nav4}</Link>
           </span>
         </nav>
           <div className="header-buttons">
